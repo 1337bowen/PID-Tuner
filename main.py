@@ -10,7 +10,10 @@ import time
 import math
 import random
 import matplotlib.pyplot as plt
+from matplotlib.ticker import FormatStrFormatter
 import numpy as np
+
+from timeit import default_timer as timer
 
 # PI macro
 M_PI = math.pi
@@ -18,6 +21,7 @@ M_PI = math.pi
 # matplotlib vars
 x_plot = []
 p_plot = []
+dt_plot = []
 
 dt = 0.05
 ts = np.arange(0, 75, dt)
@@ -56,6 +60,8 @@ X = 0
 dR = M_PI / 180
 a = 0
 
+start = timer()
+
 for i in range(1, 1000):
 
   X = (P * -(p)) + (D * -(v))
@@ -88,22 +94,31 @@ for i in range(1, 1000):
   print(p)
   p_plot.append(p)
 
-  time.sleep(0.01)
+  dt_plot.append(timer())
+
+end = timer()
+dif = end - start
 
 def c_extend(array):
   array.extend(np.full(len(ts) - len(array), array[0]))
 
 c_extend(p_plot)
 c_extend(x_plot)
+c_extend(dt_plot)
 
 fig, ax = plt.subplots()
 
-plt.ylim(-3, 1.5)
+# plt.ylim(-3, 1.5)
+plt.ylim(-5, 5)
 
 plt.plot(ts, p_plot, label='P val')
 plt.plot(ts, x_plot, label='P val')
+plt.plot(ts, dt_plot, label = 'dt')
 
+plt.ylabel("val")
 plt.xlabel("ts")
+
+ax.yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
 
 # ax.tick_params(axis='x', colors='white')
 # ax.tick_params(axis='y', colors='white')
