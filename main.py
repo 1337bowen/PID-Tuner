@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # PI macro
-M_PI = 3.14159265358979323846264338327950288
+M_PI = math.pi
 
 # matplotlib vars
 x_plot = []
