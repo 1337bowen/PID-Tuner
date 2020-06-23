@@ -1,5 +1,5 @@
 # PID-Tuner
 
-By Cheesefacejoe
+By cheesefacejoe
 
 Ported to python by Dr. B
