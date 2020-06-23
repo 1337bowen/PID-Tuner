@@ -15,6 +15,11 @@ import numpy as np
 
 from timeit import default_timer as timer
 
+import logging
+LOG_FILENAME = 'example.log'
+logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG)
+
+
 # PI macro
 M_PI = math.pi
 
@@ -62,6 +67,7 @@ a = 0
 
 start = timer()
 
+logging.debug('start')
 for i in range(1, 1000):
 
   X = (P * -(p)) + (D * -(v))
@@ -73,11 +79,10 @@ for i in range(1, 1000):
     X = m
   
 
-  print("X")
-  print("\t")
-  print(X)
+  logging.debug('X')
+  logging.debug(X)
   x_plot.append(X)
-  print("\t")
+  logging.debug('\t')
 
   X = X * dR
 
@@ -89,10 +94,10 @@ for i in range(1, 1000):
 
   p = p + (v * 0.05) + (random.randint(n, N) / 100.0)
   
-  print("p")
-  print("\t")
-  print(p)
+  logging.debug('p')
+  logging.debug(p)
   p_plot.append(p)
+  logging.debug('\t')
 
   dt_plot.append(timer())
 
